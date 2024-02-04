@@ -46,39 +46,42 @@ class _ProductsScreenState extends State<ProductsScreen> {
         ),
       ),
       body: BlocBuilder<ProductsBloc, ProductsState>(
-        builder: (context, state) {
-          /// loading state
-          if (state is ProductsLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-
-            /// error state
-          } else if (state is ProductsError) {
-            return Center(
-              child: Icon(Icons.close),
-            );
-
-            /// show Products
-          } else if (state is ProductsLoaded) {
-            var products = state.products;
-
-            if (products.length == 0)
-              return EmptyItemsWidget(text: "No Products here!");
-            else
-              return ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return _buildProductCard(context, product);
-                },
-              );
-          } else {
-            return Container();
-          }
-        },
+        builder:widgetBodyBuilder
       ),
     );
+  }
+
+  /// [widgetBodyBuilder] contains the body of the page according  to its state
+ Widget widgetBodyBuilder(BuildContext context, ProductsState state) {
+   /// loading state
+   if (state is ProductsLoading) {
+     return Center(
+       child: CircularProgressIndicator(),
+     );
+
+     /// error state
+   } else if (state is ProductsError) {
+     return Center(
+       child: Icon(Icons.close),
+     );
+
+     /// show Products
+   } else if (state is ProductsLoaded) {
+     var products = state.products;
+
+     if (products.length == 0)
+       return EmptyItemsWidget(text: "No Products here!");
+     else
+       return ListView.builder(
+         itemCount: products.length,
+         itemBuilder: (context, index) {
+           final product = products[index];
+           return _buildProductCard(context, product);
+         },
+       );
+   } else {
+     return Container();
+   }
   }
 
   Widget _buildProductCard(BuildContext context, ProductModel product) {

@@ -6,7 +6,6 @@ import '../../../bloc/cart/states.dart';
 import '../../../bloc/liked/bloc.dart';
 import '../../../bloc/liked/states.dart';
 import '../../common/empty_page.dart';
-import '../../common/view_image.dart';
 
 class FavScreen extends StatefulWidget {
   const FavScreen({super.key});
