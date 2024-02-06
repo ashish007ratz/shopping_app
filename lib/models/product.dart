@@ -39,7 +39,7 @@ class ProductModel {
 
   // Fetch list of Products
   static Future<List<ProductModel>> fetchProducts() async {
-    final response = await http.get('https://fakestoreapi.com/products');
+    final response = await http.GetData('https://fakestoreapi.com/products');
     if (response.statusCode == 200) {
       print(response);
       final List<dynamic> jsonProducts = response.data;
@@ -51,7 +51,7 @@ class ProductModel {
 
   // Fetch single Product by ID
   static Future<ProductModel> fetchProductById(int id) async {
-    final response = await http.get('https://fakestoreapi.com/products/$id');
+    final response = await http.GetData('https://fakestoreapi.com/products/$id');
     if (response.statusCode == 200) {
       /// converting response into json
       print(response.data);

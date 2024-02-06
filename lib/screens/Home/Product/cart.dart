@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/cart/bloc.dart';
@@ -26,51 +28,10 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.withOpacity(0.1),
-      appBar: AppBar(
-        elevation: 5,
-        title: Text(
-          'Your Cart',
-          style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w400), // Customize text color
-        ),
-      ),
-      body: BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
-          /// loading state
-          if (state is CartLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+    return Container();}
 
-            /// error state
-          } else if (state is CartError) {
-            return Center(
-              child: Icon(Icons.close),
-            );
 
-            /// show Products
-          } else if (state is CartLoaded) {
-            var products = state.products;
-            if (products.length == 0)
-              return EmptyItemsWidget(text: "No Items in Cart");
-            else
-              return ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return _buildProductCard(context, product);
-                },
-              );
-          } else {
-            return Container();
-          }
-        },
-      ),
-    );
-  }
+
 
   Widget _buildProductCard(BuildContext context, CartModel item) {
     var product = item.product;
